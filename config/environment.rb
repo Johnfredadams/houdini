@@ -7,7 +7,7 @@ Encoding.default_internal = Encoding::UTF_8
 @ignore_dotenv = ENV['IGNORE_DOTENV']
 unless (@ignore_dotenv)
   require 'dotenv'
-  Dotenv.load ".env"
+  Dotenv.load ".env", '.env.test'
 end
 @env = Rails.env || 'development'
 @org_name = ENV['ORG_NAME'] || 'default_organization'
