@@ -1,2 +1,2 @@
 #!/bin/bash
-npm ci && rake db:create db:structure:load db:migrate test:prepare && RAILS_ENV=test RACK_ENV=test rake -v spec
+npm ci && rake db:create db:structure:load db:migrate && RAILS_ENV=test rake db:create db:structure:load test:prepare && rake spec
