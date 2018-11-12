@@ -8,16 +8,15 @@ Encoding.default_internal = Encoding::UTF_8
 @env = Rails.env || 'development'
 unless (@ignore_dotenv)
   require 'dotenv'
-  if File.file?(".env.#{@env}")
-    Dotenv.load ".env.#{@env}"
-    puts "loaded .env.#{@env}"
-    puts "secret token = #{ENV['SECRET_TOKEN']} after .env.test"
+  if @env == 'test'
+    if File.file?(".env.#{@env}")
+      Dotenv.load ".env.test"
+      puts "secret token = #{ENV['SECRET_TOKEN']} after .env.test"
+    end
+  else
+    Dotenv.load ".env"
+    puts "secret token = #{ENV['SECRET_TOKEN']} after .env"
   end
-
-  Dotenv.load ".env"
-  puts "secret token = #{ENV['SECRET_TOKEN']} after .env"
-
-
 end
 
 @org_name = ENV['ORG_NAME'] || 'default_organization'
