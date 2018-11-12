@@ -8,7 +8,10 @@ Encoding.default_internal = Encoding::UTF_8
 @env = Rails.env || 'development'
 unless (@ignore_dotenv)
   require 'dotenv'
-  Dotenv.load ".env.#{@env}" if File.file?(".env.#{@env}")
+  if File.file?(".env.#{@env}")
+    Dotenv.load ".env.#{@env}"
+    puts "loaded .env.#{@env}"
+  end
   Dotenv.load ".env"
 end
 
